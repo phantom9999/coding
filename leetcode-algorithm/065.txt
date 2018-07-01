@@ -1,0 +1,79 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    bool isNumber(string s) {
+        int begin = 0;
+        int length = (int) s.length();
+        for (;begin<length;++begin) {
+            if (s[begin] != ' ') {
+                break;
+            }
+        }
+        length -= begin;
+        s = s.substr((unsigned long) begin, (unsigned long) length);
+        --length;
+        for (;length >=0;--length) {
+            if (s[length] != ' ' ) {
+                break;
+            }
+        }
+        ++length;
+        s = s.substr(0, (unsigned long) length);
+
+
+
+        if(s.empty())return false;
+
+        int size = s.size();
+
+        if(size == 1){
+            return (s[0] - '0') <= 9 && (s[0] - '0') >= 0;
+        }
+
+
+
+        int i = 0;
+        if(s[i] == '+'  || s[i] == '-')
+            i++;
+
+        bool e = false;
+        bool dot = false;
+        for(;i < size; i++){
+            if(s[i]<= '9' && s[i] >= '0'){
+                continue;
+            }else if(!e && i>=1 && i<size-1 && s[i]=='e'){
+                e = true;
+                if(i == 1)
+                if(!(s[i-1]<= '9' && s[i-1] >= '0'))
+                    return false;
+                if(s[i+1]=='+' || s[i+1]=='-'){
+                    i++;
+                    if(i+1 >= size) return false;
+                }
+            }else if(!dot && !e && s[i] == '.'){
+                dot = true;
+                if( (i>=1 && (s[i-1]<= '9' && s[i-1] >= '0')) || (i<size-1 && (s[i+1]<= '9' && s[i+1] >= '0'))){
+                    continue;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+int main() {
+    //ifstream cin("in.txt");
+    Solution solution;
+    cout << solution.isNumber("2e0");
+    return 0;
+}

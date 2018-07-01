@@ -1,0 +1,20 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        return n !=0 && pow(2, (int)(log(n) / log(2))) == n;
+    }
+};
+
+int main() {
+    //ifstream cin("in.txt");
+    Solution so;
+    int result = so.climbStairs(2);
+    cout << result;
+    return 0;
+}

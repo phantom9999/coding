@@ -1,0 +1,86 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+
+
+/**
+ * Definition for a binary tree node.
+ *  */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        /*
+        TreeNode *tmp1 = root;
+        vector<int> vec1;
+        while (tmp1->val != p->val){
+            vec1.push_back(tmp1->val);
+            if (p->val < tmp1->val) {
+                tmp1 = tmp1->left;
+            } else {
+                tmp1 = tmp1->right;
+            }
+        }
+
+        TreeNode *tmp2 = root;
+        vector<int> vec2;
+        while (tmp2->val != q->val){
+            vec2.push_back(tmp2->val);
+            if (q->val < tmp2->val) {
+                tmp2 = tmp2->left;
+            } else {
+                tmp2 = tmp2->right;
+            }
+        }
+
+        int length = (int) min(vec2.size(), vec1.size()) + 1;
+        int target = 0;
+        for (int i=0;i<length;++i) {
+            if (vec1.at(i) == vec2.at(i)) {
+                target = vec1.at(i);
+            } else {
+                break;
+            }
+        }
+
+        TreeNode
+         */
+        while (true) {
+            if (root->val == p->val || root->val == q->val) {
+                break;
+            }
+            bool a = root->val < p->val;
+            bool b = root->val < q->val;
+            if (a != b) {
+                break;
+            } else {
+                if (a) {
+                    root = root->right;
+                } else {
+                    root = root->left;
+                }
+            }
+        }
+        return root;
+
+
+
+    }
+};
+
+
+int main() {
+    ifstream cin("in.txt");
+
+    return 0;
+}

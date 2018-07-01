@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+
+class Solution {
+public:
+    TreeNode *invertTree(TreeNode *root) {
+        invert(root);
+        return root;
+    }
+
+    void invert(TreeNode *Node) {
+        if (Node == NULL) {
+            return;
+        } else {
+            TreeNode *tmp = Node->right;
+            Node->right = Node->left;
+            Node->left = tmp;
+            invert(Node->right);
+            invert(Node->left);
+        }
+    }
+};
+
+
+int main() {
+    ifstream cin("in.txt");
+
+    return 0;
+}

@@ -1,0 +1,57 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+/**
+ * 输入\
+ * 1
+ *
+ * 10 1
+ * 20 3
+ * 30 4
+ * 0 0
+ * 输出
+ * Case 1: 2
+ * Case 2: 4
+ * Case 3: 5
+ * (a^2+b^2 +m)/(ab)
+ * @brief main
+ * @return
+ */
+
+int main()
+{
+    ifstream cin("./read.txt");
+    ofstream cout("./writer.txt");
+
+    int n,m,cont=0,num=0;
+    int T;
+    cin>>T;
+    while(T--)
+    {
+        while(cin>>n>>m&&n!=0)
+        {
+            int a,b;
+            for(a=1;a<100;++a){
+            for(b=a+1;b<n;++b){
+                if((a*a+b*b+m)%(a*b)==0)
+                cont++;
+            }
+        }
+        cout<<"Case "<<++num<<": "<<cont<<endl;
+        cont=0;
+    }
+    num=0;
+    if(T)
+    cout<<endl;
+    }
+
+
+
+
+
+    return 0;
+}
+
+ 

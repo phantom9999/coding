@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+    //ifstream cin("./read.txt");
+    //ofstream cout("./writer.txt");
+
+    map<string,int> msi;
+    msi.insert(pair<string, int>("zero", 0));
+    msi.insert(pair<string, int>("one", 1));
+    msi.insert(pair<string, int>("two", 2));
+    msi.insert(pair<string, int>("three", 3));
+    msi.insert(pair<string, int>("four", 4));
+    msi.insert(pair<string, int>("five", 5));
+    msi.insert(pair<string, int>("six", 6));
+    msi.insert(pair<string, int>("seven", 7));
+    msi.insert(pair<string, int>("eight", 8));
+    msi.insert(pair<string, int>("nine", 9));
+    int a=0;
+    int b=0;
+    string tmp;
+
+    while (cin >> tmp) {
+        if (tmp == "+") {
+            b = a;
+            a = 0;
+        } else if (tmp == "=") {
+            if (a == 0 and b == 0) {
+                break;
+            }
+            cout << a + b << endl;
+            a = 0;
+            b = 0;
+        } else {
+            a = a*10 + msi[tmp];
+        }
+    }
+
+}
+ 

@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+                return n > 0 && 1162261467 % n == 0;
+    }
+};
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        if (n == 1) {
+            return true;
+        }
+        bool isfind = false;
+        while (n > 0) {
+            if (n % 3 == 0) {
+                n /= 3;
+            } else {
+                isfind = n == 1;
+                break;
+            }
+        }
+        return isfind;
+    }
+};
+
+int main() {
+    //ifstream cin("in.txt");
+
+
+    return 0;
+}

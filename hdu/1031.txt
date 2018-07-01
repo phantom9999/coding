@@ -1,0 +1,86 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+
+struct Node{
+    int index;
+    double count;
+};
+
+bool com(Node a, Node b) {
+    return a.count > b.count;
+}
+
+
+int main()
+{
+    //ifstream cin("./read.txt");
+    //ofstream cout("./writer.txt");
+
+    int N=0;
+    int M=0;
+    int K=0;
+    vector<Node> vn(1000);
+
+
+    while (cin >> N >> M >> K) {
+        // 初始化
+
+        for (int i=0;i<M;++i) {
+            Node n;
+            n.index = i;
+            n.count = 0;
+            vn.push_back(n);
+        }
+
+
+        for (int i=0;i<N;++i) {
+            for (int j=0;j<M;++j) {
+                double tmp = 0;
+                cin >> tmp;
+                vn[j].count += tmp;
+            }
+        }
+
+        sort(vn.begin(), vn.end(), com);
+
+        vector<int> vi;
+        for (int i=0;i<K;++i) {
+            vi.push_back(vn.at(i).index);
+        }
+
+        sort(vi.begin(), vi.end());
+
+        int k = K-1;
+        cout << vi.at(k) + 1;
+
+        while (k--) {
+           cout << ' ' << vi.at(k) + 1;
+        }
+
+        cout << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+    return 0;
+}
+ 

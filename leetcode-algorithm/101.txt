@@ -1,0 +1,93 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <stack>
+#include <bits/stl_queue.h>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+/*
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (root == NULL) {
+            return true;
+        }
+        queue<TreeNode*> queue1;
+        bool isSame = true;
+        queue1.push(root);
+
+        while (!queue1.empty()) {
+            deque<TreeNode*> tmp;
+
+            while (!queue1.empty()) {
+                TreeNode *node = queue1.front();
+                queue1.pop();
+                tmp.push_back(node->left);
+                tmp.push_back(node->right);
+            }
+            stack<TreeNode*> rightQueue;
+
+            while (!tmp.empty()) {
+                TreeNode *left = tmp.front();
+                tmp.pop_front();
+                TreeNode *right = tmp.back();
+                tmp.pop_back();
+                if (left != NULL && right != NULL) {
+                    queue1.push(left);
+                    rightQueue.push(right);
+                    if (left->val != right->val) {
+                        isSame = false;
+                        break;
+                    }
+                } else if (left != NULL || right != NULL) {
+                    isSame = false;
+                    break;
+                }
+            }
+
+            while (!rightQueue.empty()) {
+                queue1.push(rightQueue.top());
+                rightQueue.pop();
+            }
+
+
+            if (!isSame) {
+                break;
+            }
+        }
+        return isSame;
+    }
+};*/
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(!root) return true;
+
+        return isSymmetric(root->left, root->right);
+    }
+
+    bool isSymmetric(TreeNode* left, TreeNode* right){
+        if(!left && !right) return true;
+        if(!left || !right) return false;
+
+        return left->val == right->val && isSymmetric(left->right, right->left) && isSymmetric(left->left, right->right);
+    }
+};
+
+
+int main() {
+    //ifstream cin("in.txt");
+    return 0;
+}

@@ -1,0 +1,69 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+/**
+ * 题号 1021
+ * 输入
+ * 0
+ * 1
+ * 2
+ * 3
+ * 4
+ * 5
+ * 输出
+ * no
+ * no
+ * yes
+ * no
+ * no
+ * no
+ * 注意: 当n过大时, 会出现溢出, 所以,每次计算都mod3
+ * @brief main
+ * @return
+ */
+
+int main()
+{
+    //ifstream cin("./read.txt");
+    //ofstream cout("./writer.txt");
+
+
+    int n=0;
+    while (cin >> n) {
+        int result = 0;
+        // 计算数列
+        if (n == 0) {
+            result = 7;
+        } else if (n == 1) {
+            result = 11;
+        } else {
+            int a = 7;
+            int b = 11;
+            for (int i=1;i<n;++i) {
+                result = (a +b) % 3;
+                a = b;
+                b = result;
+            }
+        }
+
+        if (result % 3 == 0) {
+            cout << "yes" << endl;
+        } else {
+            cout << "no" << endl;
+        }
+
+
+
+
+    }
+
+
+
+
+
+    return 0;
+}
+
+ 

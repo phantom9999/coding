@@ -1,0 +1,99 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <stack>
+#include <bits/stl_queue.h>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ *  */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+/*
+class Solution {
+public:
+    vector<vector<int> > levelOrderBottom(TreeNode* root) {
+        vector<vector<int> > vec;
+        if (root == NULL) {
+            return vec;
+        }
+
+        queue<TreeNode*> queue1;
+        queue1.push(root);
+        stack<vector<int> > stack1;
+        while (!queue1.empty()) {
+            queue<TreeNode*> tmp;
+            vector<int> line;
+            while (!queue1.empty()) {
+                TreeNode *node = queue1.front();
+                queue1.pop();
+                line.push_back(node->val);
+                if (node->left != NULL) {
+                    tmp.push(node->left);
+                }
+                if (node->right != NULL) {
+                    tmp.push(node->right);
+                }
+            }
+
+            while (!tmp.empty()) {
+                queue1.push(tmp.front());
+                tmp.pop();
+            }
+            stack1.push(line);
+        }
+
+        while (!stack1.empty()) {
+            vec.push_back(stack1.top());
+            stack1.pop();
+        }
+        return vec;
+    }
+};*/
+
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root)
+    {
+        int h=Height(root);
+        vector<vector<int>> vec(h);
+        PreOrderTraverse(vec,h-1,root);
+        return vec;
+    }
+
+    void PreOrderTraverse(vector<vector<int>> &vec,int height,TreeNode *root)
+    {
+        if(!root)
+        {
+            return;
+        }
+        vec[height].push_back(root->val);
+        PreOrderTraverse(vec,height-1,root->left);
+        PreOrderTraverse(vec,height-1,root->right);
+    }
+
+    int Height(TreeNode *root)
+    {
+        if(!root)
+        {
+            return 0;
+        }
+        int left=Height(root->left);
+        int right=Height(root->right);
+        int height=left>right?left:right;
+        return height+1;
+    }
+};
+
+
+int main() {
+    //ifstream cin("in.txt");
+    return 0;
+}

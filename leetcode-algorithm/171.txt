@@ -1,0 +1,25 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int number = 0;
+        for (unsigned long i=0;i<s.length();++i) {
+            number += (s.at(i) - 'A' + 1)*pow(26, (s.length()-i-1));
+        }
+        return number;
+    }
+};
+
+
+int main() {
+    ifstream cin("in.txt");
+
+    return 0;
+}

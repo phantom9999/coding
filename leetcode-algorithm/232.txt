@@ -1,0 +1,71 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <stack>
+
+using namespace std;
+
+class Queue {
+public:
+    stack<int> left;
+    stack<int> right;
+    // Push element x to the back of queue.
+    void push(int x) {
+        right.push(x);
+    }
+
+    // Removes the element from in front of queue.
+    void pop(void) {
+        if (right.empty()) {
+            return;
+        }
+        while (!right.empty()) {
+            left.push(right.top());
+            right.pop();
+        }
+        left.pop();
+        while (!left.empty()) {
+            right.push(left.top());
+            left.pop();
+        }
+    }
+
+    // Get the front element.
+    int peek(void) {
+        int tmp = 0;
+        while (!right.empty()) {
+            left.push(right.top());
+            right.pop();
+        }
+        tmp = left.top();
+        while (!left.empty()) {
+            right.push(left.top());
+            left.pop();
+        }
+        return tmp;
+    }
+
+    // Return whether the queue is empty.
+    bool empty(void) {
+        return right.empty() && left.empty();
+    }
+};
+
+
+int main() {
+    //ifstream cin("in.txt");
+    Queue queue;
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+    queue.push(4);
+    cout << queue.peek() << endl;
+    queue.pop();
+    cout << queue.peek() << endl;
+    queue.pop();
+    cout << queue.peek() << endl;
+    queue.pop();
+    cout << queue.peek() << endl;
+    queue.pop();
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+bool com(const int& a, const int& b) {
+    return a > b;
+}
+
+
+int main()
+{
+    ifstream cin("./read.txt");
+    ofstream cout("./writer.txt");
+    int t = 0;
+    cin >> t;
+
+    for (int i=0;i<t;++i) {
+        int n = 0;
+        cin >> n;
+        long sum = 0;
+        int max = 0;
+        int tmp = 0;
+        for (int j=0;j<n;++j) {
+            cin >> tmp;
+            sum += tmp;
+            if (tmp > max) {
+                max = tmp;
+            }
+        }
+
+        if (sum - max -1 < max) {
+            cout << "No" << endl;
+        } else {
+            cout << "Yes" << endl;
+        }
+
+
+    }
+}
+ 

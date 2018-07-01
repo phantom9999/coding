@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+
+
+/**
+ * Definition for singly-linked list.
+ */
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode(int x) : val(x), next(NULL) { }
+};
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        if (node->next == NULL) {
+            // 后面节点为NULL
+            delete node;
+            node = NULL;
+        } else {
+            ListNode *tmp = node->next;
+            node->val = tmp->val;
+            node->next = tmp->next;
+            delete tmp;
+        }
+    }
+};
+
+
+int main() {
+    ifstream cin("in.txt");
+
+    return 0;
+}

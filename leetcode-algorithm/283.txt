@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int small = 0;
+        int length = (int) nums.size();
+        while (small < length && nums[small] != 0) {
+            ++small;
+        }
+        int large = small+1;
+
+        while (large < length) {
+            if (nums[large] != 0) {
+                nums[small] = nums[large];
+                nums[large] = 0;
+                ++small;
+            }
+            ++large;
+        }
+    }
+};
+
+
+int main() {
+    ifstream cin("in.txt");
+
+    return 0;
+}

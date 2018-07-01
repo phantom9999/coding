@@ -1,0 +1,62 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Definition for singly-linked list.
+ *  */
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode(int x) : val(x), next(NULL) { }
+};
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (l1 != NULL && l2 != NULL) {
+            ListNode *result = NULL;
+            ListNode *worker = NULL;
+            if (l1->val < l2->val) {
+                worker = l1;
+                l1 = l1->next;
+            } else {
+                worker = l2;
+                l2 = l2->next;
+            }
+            result = worker;
+
+            while (l1 != NULL && l2 != NULL) {
+                if (l1->val < l2->val) {
+                    worker->next = l1;
+                    l1 = l1->next;
+                } else {
+                    worker->next = l2;
+                    l2 = l2->next;
+                }
+                worker = worker->next;
+            }
+
+            if (l1 != NULL) {
+                worker->next = l1;
+            } else if (l2 != NULL) {
+                worker->next = l2;
+            }
+
+            return result;
+        } else if (l1 != NULL) {
+            return l1;
+        } else {
+            return l2;
+        }
+    }
+};
+
+int main() {
+    //ifstream cin("in.txt");
+
+    return 0;
+}

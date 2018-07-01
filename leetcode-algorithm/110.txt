@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Definition for a binary tree node.
+ *  */
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+};
+
+class Solution {
+public:
+    bool balanced = true;
+    bool isBalanced(TreeNode* root) {
+        int depth = getDepth(root);
+        return balanced;
+    }
+
+    int getDepth(TreeNode *root) {
+        if (root == NULL) {
+            return 1;
+        } else {
+            int left = getDepth(root->left) + 1;
+            int right = getDepth(root->right) + 1;
+            if (abs(left - right) > 1) {
+                balanced = false;
+                return 0;
+            } else {
+                return max(left, right);
+            }
+        }
+    }
+};
+
+
+int main() {
+    //ifstream cin("in.txt");
+
+    return 0;
+}

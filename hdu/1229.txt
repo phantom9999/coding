@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    //ifstream cin("./read.txt");
+    //ofstream cout("./writer.txt");
+
+    int a = 0;
+    int b = 0;
+    int k = 0;
+
+    while (cin >> a >> b >> k) {
+        if (a == 0 and b == 0) {
+            break;
+        }
+
+        int count = pow(10, k);
+
+        if (a % count == b % count) {
+            cout << -1 << endl;
+        } else {
+            cout << a + b << endl;
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+}
+ 
