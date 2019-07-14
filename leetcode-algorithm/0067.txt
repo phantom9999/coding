@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <stack>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        stack<char> chStack;
+        int sizea = a.size() - 1;
+        int sizeb = b.size() - 1;
+        bool plus = false;
+        while (sizea >= 0 && sizeb >= 0) {
+            char cha = a[sizea];
+            char chb = b[sizeb];
+            if (cha == '1' && chb == '1') {
+                if (plus) {
+                    chStack.push('1');
+                } else {
+                    chStack.push('0');
+                }
+                plus = true;
+            } else if (cha == '1' || chb == '1') {
+                if (plus) {
+                    chStack.push('0');
+                } else {
+                    chStack.push('1');
+                    plus = false;
+                }
+            } else {
+                if (plus) {
+                    chStack.push('1');
+                } else {
+                    chStack.push('0');
+                }
+                plus = false;
+            }
+            --sizea;
+            --sizeb;
+        }
+
+        while (sizea >= 0) {
+            char ch = a[sizea];
+            if (plus) {
+                if (ch == '1') {
+                    chStack.push('0');
+                } else {
+                    chStack.push('1');
+                    plus = false;
+                }
+            } else {
+                chStack.push(ch);
+            }
+            --sizea;
+        }
+        while (sizeb >= 0) {
+            char ch = b[sizeb];
+            if (plus) {
+                if (ch == '1') {
+                    chStack.push('0');
+                } else {
+                    chStack.push('1');
+                    plus = false;
+                }
+            } else {
+                chStack.push(ch);
+            }
+            --sizeb;
+        }
+        if (plus) {
+            chStack.push('1');
+        }
+        stringstream ss;
+        while (!chStack.empty()) {
+            ss << chStack.top();
+            chStack.pop();
+        }
+        return ss.str();
+
+    }
+};
+
+int main() {
+    Solution solution;
+    cout << solution.addBinary("1010", "1011");
+}

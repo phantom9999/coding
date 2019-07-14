@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        // 后移
+        vector<int> ext;
+        for (int i=0; i<m; ++i) {
+            ext.push_back(nums1[i]);
+        }
+        int begin1 = 0;
+        int begin2 = 0;
+        while (begin1 < m && begin2 < n) {
+            if (ext[begin1] < nums2[begin2]) {
+                nums1[begin1+begin2] = ext[begin1];
+                ++begin1;
+            } else {
+                nums1[begin1+begin2] = nums2[begin2];
+                ++begin2;
+            }
+        }
+        while (begin1 < m) {
+            nums1[begin1+begin2] = ext[begin1];
+            ++begin1;
+        }
+        while (begin2 < n) {
+            nums1[begin1+begin2] = nums2[begin2];
+            ++begin2;
+        }
+    }
+};
+
+int main() {
+    Solution solution;
+    vector<int> data1{1,2,3,0,0,0};
+    vector<int> data2{2,5,6};
+    solution.merge(data1, 3, data2, 3);
+    for (int item: data1) {
+        cout << item << endl;
+    }
+}

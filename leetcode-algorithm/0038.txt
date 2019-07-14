@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <stack>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    string countAndSay(int n) {
+        string str = "1";
+        // cout << str << endl;
+        for (int i=1; i< n; ++i) {
+            str = strToStr(str);
+            // cout << str << endl;
+        }
+        return str;
+    }
+
+    string strToStr(string str) {
+        stringstream ss;
+        int len = str.size();
+        bool isCon = false;
+        char cur = 'z';
+        int count = 0;
+        for (int i=0; i < len; ++i) {
+            if (cur == 'z') {
+                cur = str[i];
+                count = 1;
+            } else if (cur == str[i]) {
+                ++count;
+            } else {
+                ss << count << cur;
+                count = 1;
+                cur = str[i];
+            }
+        }
+        ss << count << cur;
+        return ss.str();
+    }
+};
+
+int main() {
+    Solution solution;
+    cout << solution.countAndSay(6);
+}

@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        return sqrt(x);
+    }
+};
+
+int main() {
+    Solution solution;
+    cout << solution.mySqrt(8);
+}

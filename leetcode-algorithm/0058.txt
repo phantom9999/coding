@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <set>
+#include <stack>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        if (s.empty()) {
+            return 0;
+        }
+        int len = s.size() - 1;
+        while (len > 0) {
+            if (s[len] == ' ') {
+                --len;
+            } else {
+                break;
+            }
+        }
+
+        int index = s.find_last_of(' ', len);
+        ++len;
+        cout << len << endl;
+        cout << index << endl;
+        if (index == -1) {
+            return len;
+        } else {
+            return len - index - 1;
+        }
+    }
+};
+
+int main() {
+    Solution solution;
+    cout << solution.lengthOfLastWord("a ab ");
+}
