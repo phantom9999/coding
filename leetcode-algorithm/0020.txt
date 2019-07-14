@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <stack>
+#include <sstream>
+
+using namespace std;
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        bool isOk = true;
+        if (s.empty()) {
+            return true;
+        }
+        stack<char> chstack;
+        chstack.push('x');
+        for (const auto item: s) {
+            if (item == '[' || item == '(' || item == '{') {
+                chstack.push(item);
+            } else if (item == ']') {
+                if (chstack.top() == '[') {
+                    chstack.pop();
+                } else {
+                    isOk = false;
+                    break;
+                }
+            } else if (item == '}') {
+                if (chstack.top() == '{') {
+                    chstack.pop();
+                } else {
+                    isOk = false;
+                    break;
+                }
+            } else if (item == ')') {
+                if (chstack.top() == '(') {
+                    chstack.pop();
+                } else {
+                    isOk = false;
+                    break;
+                }
+            }
+        }
+        return chstack.top() == 'x' && isOk;
+    }
+};
+
+
+int main() {
+    Solution solution;
+    cout << solution.isValid("[");
+
+}
+
+
+
+

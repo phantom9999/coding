@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <stack>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+        stack<int> intStack;
+        intStack.push(nums[0]);
+        int index = 1;
+        for (const auto& item: nums) {
+            if (intStack.top() != item) {
+                intStack.push(item);
+                nums[index] = item;
+                ++index;
+            }
+        }
+        return intStack.size();
+    }
+};
+
+
+int main() {
+    Solution solution;
+    vector<int> data = {0,0,1,1,1,2,2,3,3,4};
+    cout << solution.removeDuplicates(data) << endl;
+    for (const auto item: data) {
+        cout << item << endl;
+    }
+}
+
+
+
+

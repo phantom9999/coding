@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    string defangIPaddr(string address) {
+        stringstream ss;
+        for (const auto it: address) {
+            if (it == '.') {
+                ss << "[.]";
+            } else {
+                ss << it;
+            }
+        }
+        return ss.str();
+    }
+};
+
+int main() {
+    string str = "1.1.1.1";
+    Solution solution;
+    cout << solution.defangIPaddr(str);
+}
+
+
+
+

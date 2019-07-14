@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string str = to_string(x);
+        int begin = 0;
+        int end = str.size() - 1;
+        bool isSame = true;
+        while (begin < end) {
+            if (str[begin] != str[end]) {
+                isSame = false;
+                break;
+            }
+            begin += 1;
+            end -= 1;
+        }
+        return isSame;
+    }
+};
+
+int main() {
+    Solution solution;
+    cout << solution.isPalindrome(-121) << endl;
+}
+
+
+
+

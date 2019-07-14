@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <sstream>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<vector<int>> orderMap;
+        int order = 0;
+        for (const auto item: nums) {
+            orderMap.push_back({item, order});
+            ++order;
+        }
+        sort(nums.begin(), nums.end());
+        int begin = 0;
+        int end = nums.size() - 1;
+        while (begin < end) {
+            int sum = nums[begin] + nums[end];
+            if (sum == target) {
+                break;
+            } else if (sum < target) {
+                ++begin;
+            } else {
+                --end;
+            }
+        }
+        begin = nums[begin];
+        end = nums[end];
+
+        int beginOrder = 0;
+        int endOrder = 0;
+        bool beginFound = false;
+        bool endFound = false;
+        for (const auto item: orderMap) {
+            if (!beginFound && item[0] == begin) {
+                beginOrder = item[1];
+                beginFound = true;
+            } else if (!endFound && item[0] == end) {
+                endOrder = item[1];
+                endFound = true;
+            } else if (beginFound && endFound) {
+                break;
+            }
+        }
+        vector<int> result;
+        if (beginOrder > endOrder) {
+            result.push_back(endOrder);
+            result.push_back(beginOrder);
+        } else {
+            result.push_back(beginOrder);
+            result.push_back(endOrder);
+        }
+
+        return result;
+    }
+};
+
+int main() {
+    vector<int> data = {2, 7, 11, 15};
+    int target = 18;
+    Solution solution;
+    vector<int> result = solution.twoSum(data, target);
+    for (const auto item: result) {
+        cout << item << endl;
+    }
+}
+
+
+
+
